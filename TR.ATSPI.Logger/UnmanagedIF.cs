@@ -7,7 +7,7 @@ namespace TR.ATSPI
 {
 	public static class UnmanagedIF
 	{
-		static IAtsPI pi = new ManagedIF();
+		static readonly IAtsPI pi = new ManagedIF();
 
 		[DllExport(CallingConvention = CallingConvention.StdCall)]
 		public static void Dispose() => pi.Dispose();
