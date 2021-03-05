@@ -7,10 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  build-x64:
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -19,7 +17,47 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-#    - name: Test
-#      run: dotnet test --no-build --verbosity normal
+    - name: Get CurrentDirectory path
+      # ref : https://takao-hp.com/work/powershell-dir/
+      run: $CurrentDirectory = (Convert-Path .)
+
+    - name: Build x64
+      run: MSBuild.exe -p:Configuration=Release "-p:Platform=x64" -p:OutputPath=$CurrentDirectory/bin
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+  build-x86:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Get CurrentDirectory path
+      # ref : https://takao-hp.com/work/powershell-dir/
+      run: $CurrentDirectory = (Convert-Path .)
+
+    - name: Build x86
+      run: MSBuild.exe -p:Configuration=Release "-p:Platform=x86" -p:OutputPath=$CurrentDirectory/bin
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+  build-AnyCPU:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Get CurrentDirectory path
+      # ref : https://takao-hp.com/work/powershell-dir/
+      run: $CurrentDirectory = (Convert-Path .)
+
+    - name: Build AnyCPU
+      run: MSBuild.exe -p:Configuration=Release "-p:Platform=Any CPU" -p:OutputPath=$CurrentDirectory/bin      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
