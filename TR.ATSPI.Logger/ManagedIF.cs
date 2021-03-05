@@ -4,7 +4,8 @@ namespace TR.ATSPI
 {
 	public class ManagedIF : IAtsPI
 	{
-		ILogger logger = new LogToDebug();
+		readonly ILogger logger = new LogToDebug();
+		public ManagedIF(ILogger? _logger = null) => logger = _logger ?? new LogToDebug();
 
 		public void Dispose() => logger.PrintLog();
 
