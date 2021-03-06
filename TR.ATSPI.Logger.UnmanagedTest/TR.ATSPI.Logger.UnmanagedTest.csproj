@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>$(SolutionDir)\bin</OutputPath>
+		<IsPackable>false</IsPackable>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+		<DefineConstants>ANYCPU</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Platform)'=='x64'">
+		<DefineConstants>X64</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Platform)'=='x86'">
+		<DefineConstants>X86</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IAtsPI" Version="1.0.0.2" />
+		<PackageReference Include="NUnit" Version="3.13.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+	</ItemGroup>
+
+</Project>
