@@ -46,7 +46,7 @@ namespace TR.ATSPI.Logger.Test
 			=> ExecPluginFunction(() => PI?.DoorOpen(), nameof(PI.DoorOpen), string.Empty);
 		[Test]
 		public void Test_Elapse()
-			=> ExecPluginFunction(() => PI?.Elapse(new LoggerDLL.State() { BC = 1.23F, BP = 2.34F, ER = 3.45F, I = 45.67F, MR = 890F, SAP = 1023.45F, T = (int)new DateTime(2021, 12, 31, 1, 23, 45, 679).TimeOfDay.TotalMilliseconds, V = -12.345F, Z = 345.67890 }, IntPtr.Zero, IntPtr.Zero), nameof(PI.Elapse),
+			=> ExecPluginFunction(() => PI?.Elapse(new() { BC = 1.23F, BP = 2.34F, ER = 3.45F, I = 45.67F, MR = 890F, SAP = 1023.45F, T = (int)new DateTime(2021, 12, 31, 1, 23, 45, 679).TimeOfDay.TotalMilliseconds, V = -12.345F, Z = 345.67890 }, IntPtr.Zero, IntPtr.Zero), nameof(PI.Elapse),
 				"Location:345.6789, Speed:-12.345, Time:01:23:45.679, BC:1.23, MR:890, BP:2.34, ER:3.45, SAP:1023.45, Current:45.67");
 		[Test]
 		public void Test_GetPluginVersion()
@@ -65,7 +65,7 @@ namespace TR.ATSPI.Logger.Test
 			=> ExecPluginFunction(() => PI?.KeyUp(4), nameof(PI.KeyUp), "4");
 		[Test]
 		public void Test_SetBeaconData()
-			=> ExecPluginFunction(() => PI?.SetBeaconData(new LoggerDLL.Beacon() { Data = 123, Num = 99, Sig = 3, Z = 34.56F }), nameof(PI.SetBeaconData),
+			=> ExecPluginFunction(() => PI?.SetBeaconData(new() { Data = 123, Num = 99, Sig = 3, Z = 34.56F }), nameof(PI.SetBeaconData),
 				"DistanceToConnectedSection:34.56, BeaconType:99, Signal:3, Data:123");
 		[Test]
 		public void Test_SetBrake()
@@ -80,7 +80,7 @@ namespace TR.ATSPI.Logger.Test
 		public void Test_SetSignal()
 			=> ExecPluginFunction(() => PI?.SetSignal(8), nameof(PI.SetSignal), "8");
 		public void Test_SetVehicleSpec()
-			=> ExecPluginFunction(() => PI?.SetVehicleSpec(new LoggerDLL.Spec() { A = 1, B = 9, C = 5, J = 3, P = 2 }), nameof(PI.SetVehicleSpec),
+			=> ExecPluginFunction(() => PI?.SetVehicleSpec(new() { A = 1, B = 9, C = 5, J = 3, P = 2 }), nameof(PI.SetVehicleSpec),
 				"Brake:9, Power:2, ATS:1, B67:2, CarCount:5");
 
 		[Test]
@@ -93,7 +93,7 @@ namespace TR.ATSPI.Logger.Test
 			PI?.SetBrake(brake);
 			PI?.SetPower(power);
 			PI?.SetReverser(reverser);
-			Assert.AreEqual(new LoggerDLL.Hand() { B = brake, C = 0, P = power, R = reverser }, PI?.Elapse(default, default, default));
+			Assert.AreEqual(new global::Hand() { B = brake, C = 0, P = power, R = reverser }, PI?.Elapse(default, default, default));
 		}
 
 		private void ExecPluginFunction(Action act, in string MethodName, in string comment)
