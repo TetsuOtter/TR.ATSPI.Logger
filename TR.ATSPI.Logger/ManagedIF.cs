@@ -46,7 +46,7 @@ namespace TR.ATSPI
 			logger.PrintLog();
 		}
 
-		public void SetBeaconData(Beacon b) => logger.PrintLog($"Location:{b.Z}, Number:{b.Num}, Signal:{b.Sig}, Data:{b.Data}");
+		public void SetBeaconData(Beacon b) => logger.PrintLog($"DistanceToConnectedSection:{b.Z}, BeaconType:{b.Num}, Signal:{b.Sig}, Data:{b.Data}");
 
 		public void SetBrake(int b)
 		{
