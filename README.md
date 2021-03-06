@@ -1,4 +1,6 @@
 # TR.ATSPI.Logger
+[![Build & Test](https://github.com/TetsuOtter/TR.ATSPI.Logger/actions/workflows/dotnet.yml/badge.svg)](https://github.com/TetsuOtter/TR.ATSPI.Logger/actions/workflows/dotnet.yml)
+
 Print the ATSPI-Function Exec log
 
 BVEから実行されたATSPIの機能(関数)を, デバッグコンソールに出力します.

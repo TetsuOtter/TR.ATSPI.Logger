@@ -1,0 +1,32 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        Platforms: [x86, x64, Any CPU]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Get CurrentDirectory path
+      # ref : https://takao-hp.com/work/powershell-dir/
+      run: $CurrentDirectory = (Convert-Path .)
+
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1
+    - name: Build
+      run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}" -p:OutputPath=$CurrentDirectory/bin
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
