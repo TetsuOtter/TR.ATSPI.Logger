@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TR.ATSPI.Logger.Test", "TR.ATSPI.Logger.Test\TR.ATSPI.Logger.Test.csproj", "{1F7A9FB4-99FB-4C16-AC70-D3B9313C5256}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TR.ATSPI.Logger.UnmanagedTest", "TR.ATSPI.Logger.UnmanagedTest\TR.ATSPI.Logger.UnmanagedTest.csproj", "{80C29A00-BDFA-4602-88C0-5FB849B6A768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{1F7A9FB4-99FB-4C16-AC70-D3B9313C5256}.Release|x64.Build.0 = Release|x64
 		{1F7A9FB4-99FB-4C16-AC70-D3B9313C5256}.Release|x86.ActiveCfg = Release|x86
 		{1F7A9FB4-99FB-4C16-AC70-D3B9313C5256}.Release|x86.Build.0 = Release|x86
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Debug|x64.ActiveCfg = Debug|x64
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Debug|x64.Build.0 = Debug|x64
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Debug|x86.ActiveCfg = Debug|x86
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Debug|x86.Build.0 = Debug|x86
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Release|x64.ActiveCfg = Release|x64
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Release|x64.Build.0 = Release|x64
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Release|x86.ActiveCfg = Release|x86
+		{80C29A00-BDFA-4602-88C0-5FB849B6A768}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
