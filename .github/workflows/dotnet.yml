@@ -19,7 +19,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
     - name: Get CurrentDirectory path
       # ref : https://takao-hp.com/work/powershell-dir/
       run: $CurrentDirectory = (Convert-Path .)
@@ -29,4 +29,4 @@ jobs:
     - name: Build
       run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}" -p:OutputPath=$CurrentDirectory/bin
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
