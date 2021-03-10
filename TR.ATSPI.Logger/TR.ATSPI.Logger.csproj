@@ -9,6 +9,7 @@
 		<OutputPath>$(SolutionDir)\bin</OutputPath>
     <RootNamespace>TR.ATSPI</RootNamespace>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>

@@ -5,6 +5,7 @@
 		<OutputPath>$(SolutionDir)\bin</OutputPath>
 		<IsPackable>false</IsPackable>
 		<Platforms>AnyCPU;x64;x86</Platforms>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
