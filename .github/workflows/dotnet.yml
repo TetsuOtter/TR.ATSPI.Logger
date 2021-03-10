@@ -2,9 +2,9 @@ name: Build & Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -13,25 +13,35 @@ jobs:
       matrix:
         Platforms: [x86, x64, Any CPU]
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Setup nuget.exe
-      uses: nuget/setup-nuget@v1
-      with:
-        nuget-version: latest
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        #ref : https://github.com/actions/cache/blob/main/examples.md#c---nuget
+        #ref : https://github.com/marketplace/actions/setup-nuget-exe-for-use-with-actions
+        id: cache
+        with:
+          path: |
+            ~/.nuget/packages
+            !~/.nuget/packages/unwanted
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.${{ matrix.Platforms }}.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
-    - name: Restore dependencies
-      run: MSBuild.exe -t:restore -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
-    - name: Get CurrentDirectory path
-      # ref : https://takao-hp.com/work/powershell-dir/
-      run: $CurrentDirectory = (Convert-Path .)
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1
 
-    - name: Build
-      run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}" -p:OutputPath=$CurrentDirectory/bin
-    - name: Test
-      run: dotnet test --no-build --verbosity normal -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
+      - name: Restore dependencies(If needed)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: MSBuild.exe -t:restore -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
+
+      - name: Get CurrentDirectory path
+        # ref : https://takao-hp.com/work/powershell-dir/
+        run: $CurrentDirectory = (Convert-Path .)
+
+      - name: Build
+        run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
+      - name: Test
+        run: dotnet test --no-build --verbosity normal -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"

@@ -4,7 +4,8 @@ namespace TR.ATSPI
 {
 	public class ManagedIF : IAtsPI
 	{
-		ILogger logger = new LogToDebug();
+		readonly ILogger logger = new LogToDebug();
+		public ManagedIF(ILogger? _logger = null) => logger = _logger ?? new LogToDebug();
 
 		public void Dispose() => logger.PrintLog();
 
@@ -45,7 +46,7 @@ namespace TR.ATSPI
 			logger.PrintLog();
 		}
 
-		public void SetBeaconData(Beacon b) => logger.PrintLog($"Location:{b.Z}, Number:{b.Num}, Signal:{b.Sig}, Data:{b.Data}");
+		public void SetBeaconData(Beacon b) => logger.PrintLog($"DistanceToConnectedSection:{b.Z}, BeaconType:{b.Num}, Signal:{b.Sig}, Data:{b.Data}");
 
 		public void SetBrake(int b)
 		{

@@ -6,8 +6,13 @@
     <AssemblyName Condition="'$(Platform)'=='AnyCPU'">TR.ATSPI.Logger.AnyCPU</AssemblyName>
     <AssemblyName Condition="'$(Platform)'=='x86'">TR.ATSPI.Logger.x86</AssemblyName>
     <AssemblyName Condition="'$(Platform)'=='x64'">TR.ATSPI.Logger.x64</AssemblyName>
+		<OutputPath>$(SolutionDir)\bin</OutputPath>
     <RootNamespace>TR.ATSPI</RootNamespace>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<NuGetLockFilePath Condition="'$(Platform)'=='x64'">packages.lock.x64.json</NuGetLockFilePath>
+		<NuGetLockFilePath Condition="'$(Platform)'=='x86'">packages.lock.x86.json</NuGetLockFilePath>
+		<NuGetLockFilePath Condition="'$(Platform)'=='AnyCPU'">packages.lock.Any CPU.json</NuGetLockFilePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -26,7 +31,7 @@
     <DllExportMetaLibName>DllExport.dll</DllExportMetaLibName>
     <DllExportNamespace>TR.ATSPI.Logger</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
-    <DllExportSkipOnAnyCpu>false</DllExportSkipOnAnyCpu>
+    <DllExportSkipOnAnyCpu>true</DllExportSkipOnAnyCpu>
     <DllExportPlatform>Auto</DllExportPlatform>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
@@ -47,10 +52,11 @@
       <Version>3.0.41</Version>
     </PackageReference>
   </ItemGroup>
-  <Target Name="DllExportPreProc" BeforeTargets="DllExportMod" Label="8337224c9ad9e356:PreProc">
+  <Target Name="DllExportPreProc" BeforeTargets="DllExportMod" Label="8337224c9ad9e356:PreProc" Condition="'$(Platform)'!='AnyCPU'">
     <Copy SourceFiles="$(DllExportMetaLibFullPath)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
-    <Exec Command="$(ILMergeConsolePath) $(TargetFileName) IAtsPI.dll /out:$(TargetFileName).ilm0.dll" WorkingDirectory="$(TargetDir)" ContinueOnError="true" />
-    <Move SourceFiles="$(TargetDir)$(TargetFileName).ilm0.dll" DestinationFiles="$(TargetDir)$(TargetFileName)" OverwriteReadOnlyFiles="true" ContinueOnError="true" />
+		<MakeDir Directories="$(TargetDir)merged"/>
+    <Exec Command="$(ILMergeConsolePath) $(TargetDir)$(TargetFileName) $(TargetDir)IAtsPI.dll /out:$(TargetFileName)" WorkingDirectory="$(TargetDir)merged\" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)merged\$(TargetFileName)" DestinationFiles="$(TargetDir)$(TargetFileName)" OverwriteReadOnlyFiles="true" ContinueOnError="true" />
     <Delete Files="$(TargetDir)$(DllExportMetaLibName)" ContinueOnError="true" />
   </Target>
   <Target Name="DllExportPreProcAfter" AfterTargets="DllExportMod" Label="8337224c9ad9e356:PreProc">

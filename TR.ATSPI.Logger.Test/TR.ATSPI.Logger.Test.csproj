@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+		<Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+		<LangVersion>9.0</LangVersion>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+		<OutputPath>$(SolutionDir)\bin</OutputPath>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<NuGetLockFilePath Condition="'$(Platform)'=='x64'">packages.lock.x64.json</NuGetLockFilePath>
+		<NuGetLockFilePath Condition="'$(Platform)'=='x86'">packages.lock.x86.json</NuGetLockFilePath>
+		<NuGetLockFilePath Condition="'$(Platform)'=='AnyCPU'">packages.lock.Any CPU.json</NuGetLockFilePath>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TR.ATSPI.Logger\TR.ATSPI.Logger.csproj">
+      <Aliases>LoggerDLL</Aliases>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>
