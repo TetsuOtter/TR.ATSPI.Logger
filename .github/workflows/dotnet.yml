@@ -27,15 +27,16 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1
+
       - name: Restore dependencies
-        run: dotnet restore
+        run: MSBuild.exe -t:restore -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
       - name: Get CurrentDirectory path
         # ref : https://takao-hp.com/work/powershell-dir/
         run: $CurrentDirectory = (Convert-Path .)
 
-      - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v1
       - name: Build
         run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}" -p:OutputPath=$CurrentDirectory/bin
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
