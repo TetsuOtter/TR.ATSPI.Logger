@@ -42,6 +42,6 @@ jobs:
         run: $CurrentDirectory = (Convert-Path .)
 
       - name: Build
-        run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}" -p:OutputPath=$CurrentDirectory/bin
+        run: MSBuild.exe -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
       - name: Test
         run: dotnet test --no-build --verbosity normal -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
