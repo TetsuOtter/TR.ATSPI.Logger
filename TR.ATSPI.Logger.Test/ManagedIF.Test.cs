@@ -93,7 +93,10 @@ namespace TR.ATSPI.Logger.Test
 			PI?.SetBrake(brake);
 			PI?.SetPower(power);
 			PI?.SetReverser(reverser);
-			Assert.AreEqual(new global::Hand() { B = brake, C = 0, P = power, R = reverser }, PI?.Elapse(default, default, default));
+			var tmp = PI?.Elapse(default, default, default);
+			var excepted = tmp;//Œ^‚Ì•sˆê’v‘Îô
+			excepted = new() { B = brake, C = 0, P = power, R = reverser };
+			Assert.AreEqual(excepted, tmp);
 		}
 
 		private void ExecPluginFunction(Action act, in string MethodName, in string comment)
