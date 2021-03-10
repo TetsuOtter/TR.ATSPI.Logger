@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETFramework,Version=v4.8": {
+      "Microsoft.NET.Test.Sdk": {
+        "type": "Direct",
+        "requested": "[16.9.1, )",
+        "resolved": "16.9.1",
+        "contentHash": "9acz3fExifstaoKTAvHVwRGMFrtb1QLlT6KfxOFTYM4dksuzwpkApjt0xP+yJcuRsPcf14F1b0Du3GgfKZWHJw==",
+        "dependencies": {
+          "Microsoft.CodeCoverage": "16.9.1"
+        }
+      },
+      "NUnit": {
+        "type": "Direct",
+        "requested": "[3.13.1, )",
+        "resolved": "3.13.1",
+        "contentHash": "vWBvrSelmTYwqHWvO3dA63z7cOpaFR/3nJ9MMVLBkWeaWa7oiglPPm5g1h96B4i2XXqjFexxhR5MyMjmIJYPfg=="
+      },
+      "NUnit3TestAdapter": {
+        "type": "Direct",
+        "requested": "[3.17.0, )",
+        "resolved": "3.17.0",
+        "contentHash": "I9MNvK+GM2yXrHPitwZkAZKU9sYI2OO/8wKC+VuBD7V3z+ySQ1pSopX/urr0ooedI8/TIcajYPRO4vGRr7AM8A=="
+      },
+      "DllExport": {
+        "type": "Transitive",
+        "resolved": "1.7.4",
+        "contentHash": "Uw00IwE/UoJV1faJCasNXpnR3DVa/0dbKjLNS1zNinu4FehQP3y88akvoky1pAjcU6b06cu1BkG9E1IFiV+6xA=="
+      },
+      "IAtsPI": {
+        "type": "Transitive",
+        "resolved": "1.0.0.2",
+        "contentHash": "WGxYCFrirIHUHDDBGyo65FLJyG6KnaU02h4pOz02axD/c5TwPwPh27u3UPO74em+cZuYU51YDPLKBokGyznNaw=="
+      },
+      "ILMerge": {
+        "type": "Transitive",
+        "resolved": "3.0.41",
+        "contentHash": "u9n45xs40bSGoNFcmMYJkh3zkGYKR4BqzQaX2uHc2Ay4drdiQOTeo/1ECps3ttDXOu4Q6qbTnsIbQWb/06ShqA=="
+      },
+      "Microsoft.CodeCoverage": {
+        "type": "Transitive",
+        "resolved": "16.9.1",
+        "contentHash": "OEIMvld3rabmyc1L4VvHWOMTEOYrGLbgoVxwAaD8RwX8GT3a1Aal7QpJXLV22f47LpMhSz0uOBerKAd8eI9wNA=="
+      },
+      "TR.ATSPI.Logger.x86": {
+        "type": "Project",
+        "dependencies": {
+          "DllExport": "1.7.4",
+          "IAtsPI": "1.0.0.2",
+          "ilmerge": "3.0.41"
+        }
+      }
+    }
+  }
+}
