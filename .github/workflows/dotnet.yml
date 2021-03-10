@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         #ref : https://github.com/actions/cache/blob/main/examples.md#c---nuget
+        #ref : https://github.com/marketplace/actions/setup-nuget-exe-for-use-with-actions
+        id: cache
         with:
           path: |
             ~/.nuget/packages
@@ -23,6 +25,7 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -30,8 +33,10 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1
 
-      - name: Restore dependencies
+      - name: Restore dependencies(If needed)
+        if: steps.cache.outputs.cache-hit != 'true'
         run: MSBuild.exe -t:restore -p:Configuration=Release "-p:Platform=${{ matrix.Platforms }}"
+
       - name: Get CurrentDirectory path
         # ref : https://takao-hp.com/work/powershell-dir/
         run: $CurrentDirectory = (Convert-Path .)
