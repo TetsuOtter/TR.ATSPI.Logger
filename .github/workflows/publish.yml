@@ -29,18 +29,30 @@ jobs:
 
       - name: Restore dependencies(If needed)
         if: steps.cache.outputs.cache-hit != 'true'
-        run: MSBuild.exe -t:restore -p:Configuration=Release "-p:Platform=x86"
+        run: MSBuild.exe -t:restore -p:Configuration=Publish
 
       - name: Get CurrentDirectory path
         run: $CurrentDirectory = (Convert-Path .)
 
       - name: Build (x86)
-        run: MSBuild.exe -p:Configuration=Release "-p:Platform=x86"
+        run: MSBuild.exe -p:Configuration=Publish "-p:Platform=x86"
       - name: Build (x64)
-        run: MSBuild.exe -p:Configuration=Release "-p:Platform=x64"
+        run: MSBuild.exe -p:Configuration=Publish "-p:Platform=x64"
       - name: Build (Any CPU)
-        run: MSBuild.exe -p:Configuration=Release "-p:Platform=Any CPU"
+        run: MSBuild.exe -p:Configuration=Publish "-p:Platform=Any CPU"
       - name: Pack
         run: dotnet pack --no-build
       - name: Publish
         run: dotnet nuget push bin\*.nupkg -k ${{ secrets.NUGET_API_KEY }}  -s https://api.nuget.org/v3/index.json
+
+      - name: Zip the Resource
+        run: |
+          cp -r bin LICENSE README.* bin/net48/merged
+          cd bin/net48
+          cp TR.ATSPI.Logger.AnyCPU.* merged/
+          Compress-Archive -Path ./TR.ATSPI.Logger -DestinationPath ./TR.ATSPI.Logger.zip
+      - name: Archive Zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: TR.ATSPI.Logger.zip
+          path: bin/net48/TR.ATSPI.Logger.zip
