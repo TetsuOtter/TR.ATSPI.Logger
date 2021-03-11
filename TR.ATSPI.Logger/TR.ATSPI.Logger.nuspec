@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>TR.ATSPI.Logger</id>
+		<authors>TR</authors>
+		<description>Print the call-log of ATS-Plugin function</description>
+		<id>TR.ATSPI.Logger</id>
+		<version>1.0.0-preview01</version>
+		<authors>TR</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">CC0-1.0</license>
+		<projectUrl>https://github.com/TetsuOtter/TR.ATSPI.Logger</projectUrl>
+		<description>Package Description</description>
+		<repository type="git" url="https://github.com/TetsuOtter/TR.ATSPI.Logger" />
+		<dependencies>
+			<group targetFramework=".NETFramework4.8">
+				<dependency id="IAtsPI" version="1.0.0.2" exclude="Build,Analyzers" />
+			</group>
+		</dependencies>
+	</metadata>
+
+	<files>
+		<file src="..\bin\net48\TR.ATSPI.Logger.AnyCPU.dll" target="lib\net48"/>
+		<file src="..\bin\net48\TR.ATSPI.Logger.x86.dll" target="build\x86"/>
+		<file src="..\bin\net48\TR.ATSPI.Logger.x64.dll" target="build\x64"/>
+		<file src="..\bin\net48\TR.ATSPI.Logger.x86.dll" target="runtimes\win10-x86\native"/>
+		<file src="..\bin\net48\TR.ATSPI.Logger.x64.dll" target="runtimes\win10-x64\native"/>
+	</files>
+</package>
