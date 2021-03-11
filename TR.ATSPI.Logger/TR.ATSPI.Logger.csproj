@@ -11,9 +11,6 @@
     <RootNamespace>TR.ATSPI</RootNamespace>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-		<NuGetLockFilePath Condition="'$(Platform)'=='x64'">packages.lock.x64.json</NuGetLockFilePath>
-		<NuGetLockFilePath Condition="'$(Platform)'=='x86'">packages.lock.x86.json</NuGetLockFilePath>
-		<NuGetLockFilePath Condition="'$(Platform)'=='AnyCPU'">packages.lock.Any CPU.json</NuGetLockFilePath>
 		<NuspecFile>TR.ATSPI.Logger.nuspec</NuspecFile>
 	</PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
