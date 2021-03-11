@@ -44,6 +44,14 @@
     <DllExportPreProcType>25</DllExportPreProcType>
     <DllExportILMerge>IAtsPI.dll</DllExportILMerge>
     <DllExportPostProcType>0</DllExportPostProcType>
+    <PackageId>TR.ATSPI.Logger</PackageId>
+    <Authors>TR</Authors>
+    <Company>Tech Otter</Company>
+    <Product>TR's Ats Plugin</Product>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/TetsuOtter/TR.ATSPI.Logger</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TetsuOtter/TR.ATSPI.Logger</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DllExport" Version="1.7.4" />
@@ -51,6 +59,12 @@
     <PackageReference Include="ilmerge">
       <Version>3.0.41</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <Target Name="DllExportPreProc" BeforeTargets="DllExportMod" Label="8337224c9ad9e356:PreProc" Condition="'$(Platform)'!='AnyCPU'">
     <Copy SourceFiles="$(DllExportMetaLibFullPath)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
