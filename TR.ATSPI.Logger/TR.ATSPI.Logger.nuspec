@@ -5,7 +5,7 @@
 		<authors>TR</authors>
 		<description>Print the call-log of ATS-Plugin function</description>
 		<id>TR.ATSPI.Logger</id>
-		<version>1.0.2-preview01</version>
+		<version>1.0.2-preview02</version>
 		<authors>TR</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<license type="expression">CC0-1.0</license>
