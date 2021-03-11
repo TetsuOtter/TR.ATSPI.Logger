@@ -12,6 +12,7 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 		<NuspecFile>TR.ATSPI.Logger.nuspec</NuspecFile>
+		<Configurations>Debug;Release;Publish</Configurations>
 	</PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
