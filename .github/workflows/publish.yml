@@ -46,7 +46,8 @@ jobs:
 
       - name: Zip the Resource
         run: |
-          cp -r bin LICENSE README.* bin/net48/merged
+          cp -r bin LICENSE bin/net48/merged
+          cp -r bin README.md bin/net48/merged
           cd bin/net48
           cp TR.ATSPI.Logger.AnyCPU.* merged/
           Compress-Archive -Path ./TR.ATSPI.Logger -DestinationPath ./TR.ATSPI.Logger.zip
