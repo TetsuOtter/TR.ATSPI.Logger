@@ -1,5 +1,6 @@
 # TR.ATSPI.Logger
 [![Build & Test](https://github.com/TetsuOtter/TR.ATSPI.Logger/actions/workflows/dotnet.yml/badge.svg)](https://github.com/TetsuOtter/TR.ATSPI.Logger/actions/workflows/dotnet.yml)
+[![Publish To nuget.org](https://github.com/TetsuOtter/TR.ATSPI.Logger/actions/workflows/publish.yml/badge.svg)](https://github.com/TetsuOtter/TR.ATSPI.Logger/actions/workflows/publish.yml)
 
 Print the ATSPI-Function Exec log
 
@@ -15,7 +16,7 @@ BVEから実行されたATSPIの機能(関数)を, デバッグコンソール�
 
 リポジトリのルートにある"DllExport.bat"は, DllExport使用のために含んでいるファイルです.  このファイルに関しては, [Denis Kuzmin氏(github/3F)](https://github.com/3F)が著作権を有しており, MITライセンスの下, リポジトリに含ませていただいています.
 
-成果物を含む上で挙げたファイル以外は, CC0として出します.  デバッグ用途にしか使えないと思いますし, 車両に組み込んだまま公開するとかは想像できないですが, どうにせよ自由に使ってください.
+上で挙げたファイル以外は, 成果物を含めCC0として出します.  デバッグ用途にしか使えないと思いますし, 車両に組み込んだまま公開するとかは想像できないですが, どうにせよ自由に使ってください.
 
 ## Add the output destination
 既定では, デバッグコンソールへの出力としています.  これは, ILoggerインターフェースを実装するLogToDebugクラスを使用して実現しています.
