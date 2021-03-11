@@ -27,8 +27,7 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1
 
-      - name: Restore dependencies(If needed)
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Restore dependencies
         run: MSBuild.exe -t:restore -p:Configuration=Publish
 
       - name: Get CurrentDirectory path
