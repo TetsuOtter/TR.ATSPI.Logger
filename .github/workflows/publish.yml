@@ -1,0 +1,46 @@
+name: Publish To nuget.org
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            ~/.nuget/packages
+            !~/.nuget/packages/unwanted
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Restore dependencies(If needed)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: MSBuild.exe -t:restore -p:Configuration=Release "-p:Platform=x86"
+
+      - name: Get CurrentDirectory path
+        run: $CurrentDirectory = (Convert-Path .)
+
+      - name: Build (x86)
+        run: MSBuild.exe -p:Configuration=Release "-p:Platform=x86"
+      - name: Build (x64)
+        run: MSBuild.exe -p:Configuration=Release "-p:Platform=x64"
+      - name: Build (Any CPU)
+        run: MSBuild.exe -p:Configuration=Release "-p:Platform=Any CPU"
+      - name: Pack
+        run: dotnet pack --no-build
+      - name: Publish
+        run: dotnet nuget push bin\*.nupkg -k ${{ secrets.NUGET_API_KEY }}  -s https://api.nuget.org/v3/index.json
