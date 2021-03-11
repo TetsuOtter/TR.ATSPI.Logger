@@ -43,7 +43,7 @@
         "resolved": "16.9.1",
         "contentHash": "OEIMvld3rabmyc1L4VvHWOMTEOYrGLbgoVxwAaD8RwX8GT3a1Aal7QpJXLV22f47LpMhSz0uOBerKAd8eI9wNA=="
       },
-      "TR.ATSPI.Logger.AnyCPU": {
+      "tr.atspi.logger": {
         "type": "Project",
         "dependencies": {
           "DllExport": "1.7.4",
